@@ -8,8 +8,6 @@ import (
 )
 
 // Global Variables
-// var client_map = make(map[string]net.Conn)
-// var client_list []string
 
 func main() {
 	fmt.Println("Starting Rubicon Chatroom Server")
