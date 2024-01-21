@@ -40,8 +40,8 @@ func (srv_msg *ServerMsg) ReceiveMessageFromServer(conn net.Conn) {
 
 		msg, err := bufio.NewReader(conn).ReadString('\n')
 		if err != nil {
-			fmt.Println("Server no longer available.")
-			fmt.Println("Exiting Application.")
+			// fmt.Println("Server no longer available.")
+			// fmt.Println("Exiting Application.")
 			os.Exit(1)
 		}
 		srv_msg.server_msg = msg
