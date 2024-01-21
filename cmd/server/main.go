@@ -54,7 +54,9 @@ func removeClient(user_name string) {
 	}
 	client_list = temp
 	delete(client_map, user_name)
-	writeToAllClients(user_name, " has left the chat.")
+	if user_name != "" {
+		writeToAllClients(user_name, " has left the chat.")
+	}
 }
 
 func handleConnection(conn net.Conn) {
@@ -68,6 +70,10 @@ func handleConnection(conn net.Conn) {
 	for {
 		user_name := readFromClient(conn)
 		user_name = strings.TrimSuffix(user_name, "\n")
+		if user_name == "Bye" {
+			client_name = ""
+			break
+		}
 		_, name_present := client_map[user_name]
 		if name_present == false {
 			client_map[user_name] = conn
@@ -97,11 +103,16 @@ func handleConnection(conn net.Conn) {
 	// remove the client from the map and list when function ends
 	defer removeClient(client_name)
 
-	writeToAllClients(client_name, " has joined the chat!")
+	if client_name != "" {
+		writeToAllClients(client_name, " has joined the chat!")
+	}
 
 	// read messages from registered user and broadcast to other registered users
 	for {
 		client_msg := readFromClient(conn)
+		if client_name == "" {
+			client_msg = "Bye\n"
+		}
 		if client_msg == "Bye\n" {
 			break
 		}
