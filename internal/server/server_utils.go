@@ -1,4 +1,4 @@
-package main
+package server
 
 import (
 	"bufio"
@@ -59,7 +59,7 @@ func removeClient(user_name string) {
 	}
 }
 
-func handleConnection(conn net.Conn) {
+func HandleConnection(conn net.Conn) {
 	defer conn.Close()
 
 	// On Board new user and get viable user name
@@ -117,23 +117,5 @@ func handleConnection(conn net.Conn) {
 			break
 		}
 		writeToAllClients(client_name, " said: "+client_msg)
-	}
-}
-
-func main() {
-	fmt.Println("Starting Rubicon Chatroom Server")
-	ln, err := net.Listen("tcp", "localhost:8080")
-	if err != nil {
-		fmt.Println(err.Error())
-	}
-
-	for {
-		conn, err := ln.Accept()
-		if err != nil {
-			fmt.Println(err.Error())
-		}
-
-		// create new go routine for each client
-		go handleConnection(conn)
 	}
 }
