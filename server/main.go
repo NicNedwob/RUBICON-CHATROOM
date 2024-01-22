@@ -11,7 +11,7 @@ import (
 
 func main() {
 	fmt.Println("Starting Rubicon Chatroom Server")
-	ln, err := net.Listen("tcp", "localhost:8080") // localhost
+	ln, err := net.Listen("tcp", "137.125.36.35:5000") // localhost
 	if err != nil {
 		fmt.Println(err.Error())
 	}
