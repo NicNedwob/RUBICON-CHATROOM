@@ -15,7 +15,7 @@ var srv_msg_struct = client.ServerMsg{}
 func main() {
 	fmt.Println("Starting Rubicon Chatroom Client")
 	scanner := bufio.NewScanner(os.Stdin)
-	conn, err := net.Dial("tcp", "0.0.0.0:80")
+	conn, err := net.Dial("tcp", "172.17.0.2:8000")
 
 	if err != nil {
 		fmt.Println(err.Error())

@@ -112,8 +112,12 @@ func HandleConnection(conn net.Conn) {
 		client_msg := readFromClient(conn)
 		if client_name == "" {
 			client_msg = "Bye\n"
+			break
 		}
 		if client_msg == "Bye\n" {
+			break
+		}
+		if client_msg == "" {
 			break
 		}
 		writeToAllClients(client_name, " said: "+client_msg)

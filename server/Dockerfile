@@ -29,6 +29,6 @@ rm -rf /root/.ssh/
 # Build our go binary
 RUN go build -o server
 
-EXPOSE 8080
+EXPOSE 8000
 
 ENTRYPOINT ["/go/src/server"]

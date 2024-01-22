@@ -29,6 +29,6 @@ rm -rf /root/.ssh/
 RUN go build -o client
 
 
-EXPOSE 8080
+EXPOSE 8000
 
 ENTRYPOINT ["/go/src/client"]
