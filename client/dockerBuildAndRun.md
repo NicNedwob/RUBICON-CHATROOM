@@ -1,2 +1,9 @@
-docker build --build-arg SSH_PRIVATE_KEY="$(cat ~/.ssh/id_rsa)" -t client .
-docker run -it client
+## Client Build Command
+```bash
+docker build -t client .
+```
+
+## Client Run Command
+```bash
+docker run -it --net=host client
+```
