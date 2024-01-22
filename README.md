@@ -19,17 +19,11 @@ git clone git@github.com:NicNedwob/RUBICON-CHATROOM.git
 ```
 For the next steps the Docker Engine on your system needs to be running.
 
-### Server
-While in the repository directory, navigate to the server directory and open the dockerBuildAndRun.md file and run the first command to build the docker image for the server. 
-
-### Client
-Likewise, while in the root repository directory, navigate to the client directory and open the dockerBuildAndRun.md file and run the first command to build the docker image for the client. 
-
 ## Run Docker Images
-The dockerBuildAndRun.md files not only detail the docker build command but also the docker run command for each module. But here they are as well for easy access:
+The dockerBuildAndRun.md files located in the server and client directories not only detail the docker build command but also the docker run command for each module. But here they are as well for easy access:
 
 ### Server
-Build:
+To build, nagivate to server directory and run:
 ```bash
 docker build -t server .
 ```
@@ -41,7 +35,8 @@ docker run -it --network=bridge -p <server_host_ipaddrs>:8000:8000 server
 Change the server_host_ipaddrs as needed. It will be IPv4 address on the current machine.
 
 ### Client
-Build:
+To build, nagivate to client directory and run:
+
 ```bash
 docker build -t server .
 ```
