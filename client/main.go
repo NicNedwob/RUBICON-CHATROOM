@@ -6,7 +6,7 @@ import (
 	"net"
 	"os"
 
-	"github.com/NicNedwob/RUBICON-CHATROOM/internal/client"
+	"github.com/NicNedwob/RUBICON-CHATROOM/client/internal/client"
 )
 
 // Global Variables
