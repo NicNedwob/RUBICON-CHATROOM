@@ -1,29 +1,34 @@
-FROM golang:latest as builder
-
-ENV GOPATH="/RUBICON-CHATROOM"
-ENV GOBIN="/RUBICON-CHATROOM/bin"
-ENV PATH=$PATH:$GOBIN
-ENV GOPRIVATE="github.com/NicNedwob/RUBICON-CHATROOM"
-
-RUN mkdir -p /RUBICON-SERVER
-RUN mkdir /RUBICON-SERVER/src
-RUN mkdir /RUBICON-SERVER/bin
-
-WORKDIR /RUBICON-SERVER
+FROM golang:latest AS build-env
 
 
-COPY go.mod ./
-RUN go mod download
+# Add the private key arg
+ARG SSH_PRIVATE_KEY
+RUN git config --global url.ssh://git@github.com/.insteadOf https://github.com/
 
-# Copy dir
-COPY main.go ./src
-COPY internal /src
+# Make the root foler for our ssh 
+RUN mkdir -p /root/.ssh && \
+chmod 0700 /root/.ssh && \
+ssh-keyscan github.com > /root/.ssh/known_hosts
 
-# RUN CGO_ENABLED=0 GOOS=linux go build -o /docker-gs-ping
-RUN CGO_ENABLED=0 GOOS=linux go build src/main.go 
-#-o /RUBICON-SERVER/bin/server
+# Define a work directory
+WORKDIR /go/src
+RUN mkdir -p /go/bin
+ENV GOBIN = /go/bin
 
+
+# Copy our files
+COPY . .
+
+# put the contents of the private key argument into id_rsa inside our ssh folder and give permissions
+# Then download our modules and private modules, finally delete the ssh key.
+RUN echo "$SSH_PRIVATE_KEY" > /root/.ssh/id_rsa && \
+chmod 600 /root/.ssh/id_rsa && \
+go mod download && \
+rm -rf /root/.ssh/
+
+# Build our go binary
+RUN go build -o server
 
 EXPOSE 8080
 
-CMD ["/bin/server"]
+ENTRYPOINT ["/go/src/server"]
