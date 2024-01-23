@@ -62,6 +62,6 @@ The modules were tested manually with the following steps:
 11. Exit a client with keyword Ctrl-C. Is the client removed gracefully? -> Yes.
 12. Close server with clients still connected. Do clients gracefully close -> Yes. 
 
-Testing showed that any number of clients could communicate both locally and over machines on same network. Testing also showed that all use-cases or erros are handled gracefully. 
+Testing showed that any number of clients could communicate both locally and over machines on same network. Testing also showed that all use-cases or errors are handled gracefully. 
 
 
