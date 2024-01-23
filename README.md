@@ -38,7 +38,7 @@ Change the server_host_ipaddrs as needed. It will be IPv4 address on the current
 To build, nagivate to client directory and run:
 
 ```bash
-docker build -t server .
+docker build -t client .
 ```
 
 Run:
