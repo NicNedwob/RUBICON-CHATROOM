@@ -47,3 +47,21 @@ docker run -it --network=host client
 ```
 Runnign the the above command in terminal will open a terminal session giving instructions. At this point enter the IPv4 address of the server (i.e. 192.168.1.171 or whatever was determined by running ipconfig/ifconfig on the server host machine). 
 
+## Testing
+The modules were tested manually with the following steps:
+1. Build and Run the server. Does it compile and run without errors? -> Yes.
+2. Build and Run the client. Does it compile and run without errors? -> Yes.
+3. Input the IP address of the server. Does it display the welcoming message? -> Yes.
+4. Input a user-name. Does the server show a list of current users and provide further instructions? -> Yes.
+5. Run another client on same machine. Exit before choosing username. Does server handle correctly (ignore and continue)? -> Yes.
+6. Run another client on same machine. Does username selection loop work if user selects username already taken? -> Yes.
+7. Does second client go to chat like the first client when unique username is selected? -> Yes.
+8. Run any number of other clients on different machines on network. Do they connect to server with correct onboarding procedure? -> Yes.
+9. Send messages on clients. Are they received by all the other clients? -> Yes.
+10. Exit a client with keyword Bye. Is the client removed? -> Yes.
+11. Exit a client with keyword Ctrl-C. Is the client removed gracefully? -> Yes.
+12. Close server with clients still connected. Do clients gracefully close -> Yes. 
+
+Testing showed that any number of clients could communicate both locally and over machines on same network. Testing also showed that all use-cases or erros are handled gracefully. 
+
+
